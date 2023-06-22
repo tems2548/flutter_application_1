@@ -1,6 +1,6 @@
 # flutter_application_1
 
-A new Flutter project.
+Application about IoT monitering with firebase.
 
 ## Getting Started
 
