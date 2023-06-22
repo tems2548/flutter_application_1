@@ -10,6 +10,7 @@ class Login extends StatelessWidget {
       title: "LOGIN",
       home: const LoginPage(),
       routes: AppRoute.all,
+      theme: ThemeData(brightness: Brightness.dark),
     );
   }
 }
@@ -48,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Card(
               child: Container(
                 padding: const EdgeInsets.all(8.0),
-                height: 450,
+                height: 400,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -57,10 +58,6 @@ class _LoginPageState extends State<LoginPage> {
                         height: 10,
                       ),
                       ..._buildbutton(),
-                      Text("Debug:$_debug"),
-                      IconButton(onPressed: _add, icon: const Icon(Icons.add)),
-                      IconButton(
-                          onPressed: _remove, icon: const Icon(Icons.remove))
                     ]),
               ),
             ),
@@ -71,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
   void _handleClick() {
     // print("login : (${_username.text},${_password.text})");
     if (_username.text == 'admin' && _password.text == '12345') {
-      Navigator.pushNamed(context, AppRoute.home);
+      Navigator.pushNamed(context, AppRoute.navdata);
     } else {
       _username.text = "unknow User";
     }
@@ -84,9 +81,25 @@ class _LoginPageState extends State<LoginPage> {
 
   _buildbutton() {
     return [
-      ElevatedButton(onPressed: _handleClick, child: const Text("Login")),
-      OutlinedButton(onPressed: _handleReset, child: const Text("reset")),
-      OutlinedButton(onPressed: _handleRegister, child: const Text("register"))
+      ElevatedButton(
+        onPressed: _handleClick,
+        style: const ButtonStyle(
+            backgroundColor:
+                MaterialStatePropertyAll(Color.fromARGB(255, 55, 0, 179))),
+        child: const Text("Login"),
+      ),
+      OutlinedButton(
+          onPressed: _handleReset,
+          child: const Text(
+            "reset",
+            style: TextStyle(color: Colors.white),
+          )),
+      OutlinedButton(
+          onPressed: _handleRegister,
+          child: const Text(
+            "register",
+            style: TextStyle(color: Colors.white),
+          ))
     ];
   }
 

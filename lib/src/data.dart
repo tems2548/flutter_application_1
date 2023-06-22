@@ -10,12 +10,14 @@ class Dis extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    var appaqi = MaterialApp(
       title: "test",
       home: const Data(),
       routes: AppRoute.all,
-      theme: ThemeData(primarySwatch: Colors.grey),
+      theme: ThemeData(
+          brightness: Brightness.dark, scaffoldBackgroundColor: Colors.black),
     );
+    return appaqi;
   }
 }
 
@@ -35,20 +37,21 @@ class _Datastate extends State<Data> {
   String pm1_0 = '0';
   @override
   Widget build(BuildContext context) {
+    var aqidata = FutureBuilder(
+      future: _fApp,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return const Text("Something wrong");
+        } else if (snapshot.hasData) {
+          return content();
+        } else {
+          return const CircularProgressIndicator();
+        }
+      },
+    );
     return Scaffold(
       // appBar: AppBar(title: const Text("firebase example")),
-      body: FutureBuilder(
-        future: _fApp,
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return const Text("Something wrong");
-          } else if (snapshot.hasData) {
-            return content();
-          } else {
-            return const CircularProgressIndicator();
-          }
-        },
-      ),
+      body: aqidata,
     );
   }
 
@@ -85,8 +88,23 @@ class _Datastate extends State<Data> {
     });
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    return Scaffold(
+    Color aqicolor = Colors.yellow;
+    int aqi = int.parse(realtimeValue);
+    if (aqi < 25) {
+      aqicolor = const Color.fromARGB(255, 152, 223, 255);
+    } else if (aqi >= 25 && aqi <= 50) {
+      aqicolor = const Color.fromARGB(255, 187, 255, 127);
+    } else if (aqi > 50 && aqi <= 100) {
+      aqicolor = const Color.fromARGB(255, 246, 255, 144);
+    } else if (aqi > 100 && aqi <= 200) {
+      aqicolor = const Color.fromARGB(255, 254, 175, 71);
+    } else if (aqi > 200) {
+      aqicolor = Colors.redAccent;
+    }
+
+    var scaffold = Scaffold(
         appBar: AppBar(
+          backgroundColor: const Color.fromARGB(56, 255, 255, 255),
           leading: const Icon(
             Icons.cloud,
             size: 40,
@@ -109,34 +127,48 @@ class _Datastate extends State<Data> {
                 height: height * .1 / 8,
               ),
               BoxWidget(
-                  title: "AQI",
-                  amount: realtimeValue,
-                  color: Colors.blueGrey,
-                  size: height * .17),
+                title: "AQI",
+                amount: realtimeValue,
+                color: const Color.fromARGB(44, 255, 255, 255),
+                size: height * .17,
+                textcolor: aqicolor,
+                fontsized: 70,
+                amoutsize: 100,
+              ),
               SizedBox(
                 height: height * .1 / 6,
               ),
               BoxWidget(
-                  title: "PM 10",
-                  amount: pm10,
-                  color: Colors.blueGrey,
-                  size: height * .17),
+                title: "PM 10 ",
+                amount: pm10,
+                color: const Color.fromARGB(44, 255, 255, 255),
+                size: height * .17,
+                textcolor: Colors.white,
+                fontsized: 40,
+                si: "µg/m³",
+              ),
               SizedBox(
                 height: height * .1 / 6,
               ),
               BoxWidget(
                   title: "PM 2.5",
                   amount: pm2_5,
-                  color: Colors.blueGrey,
-                  size: height * .17),
+                  color: const Color.fromARGB(44, 255, 255, 255),
+                  size: height * .17,
+                  textcolor: Colors.white,
+                  fontsized: 40,
+                  si: "µg/m³"),
               SizedBox(
                 height: height * .1 / 6,
               ),
               BoxWidget(
                   title: "PM 1.0",
                   amount: pm1_0,
-                  color: Colors.blueGrey,
-                  size: height * .17)
+                  color: const Color.fromARGB(44, 255, 255, 255),
+                  size: height * .17,
+                  textcolor: Colors.white,
+                  fontsized: 40,
+                  si: "µg/m³")
             ],
           ),
         ),
@@ -148,5 +180,6 @@ class _Datastate extends State<Data> {
           },
           child: const Icon(Icons.arrow_back),
         ));
+    return scaffold;
   }
 }

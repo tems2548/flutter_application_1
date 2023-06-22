@@ -14,7 +14,10 @@ class DIStmp extends StatelessWidget {
       title: "test",
       home: const DataTMP(),
       routes: AppRoute.all,
-      theme: ThemeData(primarySwatch: Colors.grey),
+      theme: ThemeData(
+          brightness: Brightness.dark,
+          primarySwatch: Colors.deepPurple,
+          scaffoldBackgroundColor: const Color.fromARGB(255, 0, 0, 0)),
     );
   }
 }
@@ -30,9 +33,9 @@ class _DataTMPstate extends State<DataTMP> {
   final Future<FirebaseApp> _fApp = Firebase.initializeApp();
   String realtimeValue = '0';
   String getonce = '0';
-  String pm10 = '0';
-  String pm2_5 = '0';
-  String pm1_0 = '0';
+  String temperature = '0';
+  String humidity = '0';
+  String pressure = '0';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,36 +56,30 @@ class _DataTMPstate extends State<DataTMP> {
   }
 
   Widget content() {
-    DatabaseReference testRef =
-        FirebaseDatabase.instance.ref().child('ESP/AQI');
-    testRef.onValue.listen((event) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+    DatabaseReference temp = FirebaseDatabase.instance.ref().child('ESP/temp');
+    temp.onValue.listen((event) {
       setState(() {
-        realtimeValue = event.snapshot.value.toString();
+        temperature = event.snapshot.value.toString();
       });
     });
-    DatabaseReference particle =
-        FirebaseDatabase.instance.ref().child('ESP/PM 10');
-    particle.onValue.listen((event) {
+    DatabaseReference humid =
+        FirebaseDatabase.instance.ref().child('ESP/humid');
+    humid.onValue.listen((event) {
       setState(() {
-        pm10 = event.snapshot.value.toString();
+        humidity = event.snapshot.value.toString();
       });
     });
-    DatabaseReference particle2_5 =
-        FirebaseDatabase.instance.ref().child('ESP/PM 2_5');
-    particle2_5.onValue.listen(
+    DatabaseReference press =
+        FirebaseDatabase.instance.ref().child('ESP/pressure');
+    press.onValue.listen(
       (event) {
         setState(() {
-          pm2_5 = event.snapshot.value.toString();
+          pressure = event.snapshot.value.toString();
         });
       },
     );
-    DatabaseReference particle1_0 =
-        FirebaseDatabase.instance.ref().child('ESP/PM 1_0');
-    particle1_0.onValue.listen((event) {
-      setState(() {
-        pm1_0 = event.snapshot.value.toString();
-      });
-    });
 
     return Scaffold(
         appBar: AppBar(
@@ -104,30 +101,44 @@ class _DataTMPstate extends State<DataTMP> {
           padding: const EdgeInsets.all(10.0),
           child: Column(
             children: [
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: height * .1 / 5,
               ),
               BoxWidget(
-                  title: "Temperture",
-                  amount: realtimeValue,
-                  color: Colors.blueGrey,
-                  size: 170),
-              const SizedBox(
-                height: 20,
+                title: "Temperture",
+                amount: temperature,
+                color: const Color.fromARGB(44, 255, 255, 255),
+                size: height * .18,
+                amoutsize: 60,
+                textcolor: Colors.white,
+                fontsized: 25,
+                si: "°C",
+              ),
+              SizedBox(
+                height: height * .1 / 5,
               ),
               BoxWidget(
-                  title: "Humidity",
-                  amount: pm10,
-                  color: Colors.blueGrey,
-                  size: 170),
-              const SizedBox(
-                height: 20,
+                title: "Humidity ",
+                amount: humidity,
+                color: const Color.fromARGB(44, 255, 255, 255),
+                size: height * .18,
+                amoutsize: 60,
+                textcolor: Colors.white,
+                fontsized: 30,
+                si: "% RH",
+              ),
+              SizedBox(
+                height: height * .1 / 5,
               ),
               BoxWidget(
-                  title: "Preasure",
-                  amount: pm2_5,
-                  color: Colors.blueGrey,
-                  size: 170),
+                title: "Preasure",
+                amount: pressure,
+                color: const Color.fromARGB(44, 255, 255, 255),
+                size: height * .18,
+                textcolor: Colors.white,
+                fontsized: 30,
+                si: "hPa",
+              ),
               const SizedBox(
                 height: 10,
               ),

@@ -12,8 +12,8 @@ class MyApp extends StatelessWidget {
         home: const Myhomepage(),
         routes: AppRoute.all,
         theme: ThemeData(
-            primarySwatch: Colors.deepPurple,
-            scaffoldBackgroundColor: const Color.fromARGB(255, 44, 4, 90)));
+            brightness: Brightness.dark,
+            scaffoldBackgroundColor: const Color.fromARGB(255, 0, 0, 0)));
   }
 }
 
@@ -51,7 +51,7 @@ class _MyWidgetState extends State<Myhomepage> {
               left: width * .1 / 4,
               top: height * .25,
               child: InkWell(
-                child: box(const Color.fromARGB(255, 255, 176, 58), "AQI"),
+                child: box(const Color.fromARGB(255, 55, 0, 179), "AQI"),
                 onTap: () {
                   Navigator.pushNamed(context, AppRoute.data);
                 },
@@ -61,7 +61,7 @@ class _MyWidgetState extends State<Myhomepage> {
               left: width * .50,
               top: height * .25,
               child: InkWell(
-                  child: box(const Color.fromARGB(255, 234, 255, 50), "THP"),
+                  child: box(const Color.fromARGB(255, 55, 0, 179), "THP"),
                   onTap: () {
                     Navigator.pushNamed(context, AppRoute.tmpdata);
                   }),
@@ -70,15 +70,17 @@ class _MyWidgetState extends State<Myhomepage> {
                 left: width * .1 / 4,
                 top: height * .51,
                 child: InkWell(
-                  child: box(const Color.fromARGB(255, 150, 223, 154), "GAS"),
+                  child: box(const Color.fromARGB(255, 55, 0, 179), "GAS"),
                   onTap: () {},
                 )),
             Positioned(
                 left: width * .50,
                 top: height * .51,
                 child: InkWell(
-                  child: box(const Color.fromARGB(255, 248, 202, 202), "CMS"),
-                  onTap: () {},
+                  child: box(const Color.fromARGB(255, 55, 0, 179), "CMS"),
+                  onTap: () {
+                    Navigator.pushNamed(context, AppRoute.command);
+                  },
                 )),
             Positioned(
                 top: height * .76,
@@ -103,9 +105,10 @@ class _MyWidgetState extends State<Myhomepage> {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 40),
                             child: AnimatedTextKit(animatedTexts: [
-                              TypewriterAnimatedText("Made by Temz and my team",
+                              TypewriterAnimatedText("Made by Debsirin team",
                                   textAlign: TextAlign.center),
-                              TypewriterAnimatedText("Dust Tracker",
+                              TypewriterAnimatedText(
+                                  "Dust Tracker monitering system",
                                   textAlign: TextAlign.center),
                               TypewriterAnimatedText(
                                   "install at Debsirin school",
@@ -121,29 +124,28 @@ class _MyWidgetState extends State<Myhomepage> {
                 left: 0,
                 top: 0,
                 child: Container(
-                  height: 200,
+                  height: height * .23,
                   width: width,
                   decoration: const BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                            color: Color.fromARGB(160, 131, 243, 238),
+                            color: Color.fromARGB(255, 255, 255, 255),
                             spreadRadius: 0,
                             blurRadius: 0,
-                            offset: Offset(0, 10))
+                            offset: Offset(0, 15))
                       ],
-                      color: Color.fromARGB(255, 169, 243, 239),
+                      color: Color.fromARGB(255, 55, 0, 179),
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(25),
                           bottomRight: Radius.circular(25))),
                   child: ShaderMask(
                     shaderCallback: (bounds) => const LinearGradient(colors: [
-                      Color.fromARGB(255, 255, 4, 4),
-                      Color.fromARGB(255, 255, 158, 1),
-                      Color.fromARGB(255, 255, 230, 0),
+                      Color.fromARGB(255, 255, 255, 255),
+                      Color.fromARGB(255, 255, 255, 255)
                     ]).createShader(bounds),
                     child: const DefaultTextStyle(
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 255, 255, 255),
                           fontSize: 56,
                           fontWeight: FontWeight.bold),
                       child: Padding(
@@ -171,24 +173,23 @@ class _MyWidgetState extends State<Myhomepage> {
             borderRadius: BorderRadius.circular(25),
             boxShadow: const [
               BoxShadow(
-                  color: Color.fromARGB(255, 167, 163, 163),
+                  color: Color.fromARGB(144, 203, 194, 210),
                   spreadRadius: 1,
                   blurRadius: 0,
-                  offset: Offset(6, 9))
+                  offset: Offset(15, 15))
             ]),
         height: height * .22,
         width: width * .40,
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 27),
+              padding: const EdgeInsets.only(left: 20),
               child: Text(
                 tx,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: width * 1 / 7,
-                    color: const Color.fromARGB(255, 39, 3, 80),
+                    color: Colors.white,
                     fontWeight: FontWeight.bold),
               ),
             ),
