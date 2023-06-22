@@ -56,7 +56,7 @@ class _DataTMPstate extends State<DataTMP> {
   }
 
   Widget content() {
-    var width = MediaQuery.of(context).size.width;
+    // var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     DatabaseReference temp = FirebaseDatabase.instance.ref().child('ESP/temp');
     temp.onValue.listen((event) {

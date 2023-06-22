@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 // import 'src/menu.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -139,7 +137,7 @@ class _Navdatastate extends State<Navdata> {
   }
 
   Widget content() {
-    var width = MediaQuery.of(context).size.width;
+    // var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     DatabaseReference temp = FirebaseDatabase.instance.ref().child('ESP/temp');
     temp.onValue.listen((event) {
@@ -233,7 +231,7 @@ class _Navdatastate extends State<Navdata> {
   }
 
   Widget gas() {
-    var width = MediaQuery.of(context).size.width;
+    // var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     DatabaseReference co2 = FirebaseDatabase.instance.ref().child('ESP/CO2');
     co2.onValue.listen((event) {
@@ -355,7 +353,7 @@ class _Navdatastate extends State<Navdata> {
         pm1_0 = event.snapshot.value.toString();
       });
     });
-    var width = MediaQuery.of(context).size.width;
+    // var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     Color aqicolor = Colors.yellow;
     int aqi = int.parse(realtimeValue);

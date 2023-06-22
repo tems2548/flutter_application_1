@@ -25,7 +25,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _username = TextEditingController();
   final _password = TextEditingController();
-  int _debug = 0;
+
   @override
   void initState() {
     super.initState();
@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
             style: TextStyle(fontSize: 20),
           ),
         ),
-        body: Container(
+        body: SizedBox(
           width: double.infinity,
           child: Padding(
             padding: const EdgeInsets.all(32.0),
@@ -118,15 +118,5 @@ class _LoginPageState extends State<LoginPage> {
 
   void _handleRegister() {
     Navigator.pushNamed(context, AppRoute.register);
-  }
-
-  void _add() {
-    _debug++;
-    setState(() {});
-  }
-
-  void _remove() {
-    _debug--;
-    setState(() {});
   }
 }

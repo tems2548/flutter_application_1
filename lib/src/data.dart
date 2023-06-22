@@ -86,7 +86,7 @@ class _Datastate extends State<Data> {
         pm1_0 = event.snapshot.value.toString();
       });
     });
-    var width = MediaQuery.of(context).size.width;
+    // var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     Color aqicolor = Colors.yellow;
     int aqi = int.parse(realtimeValue);
