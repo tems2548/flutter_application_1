@@ -574,17 +574,25 @@ class _Navdatastate extends State<Navdata> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(top: 7),
-                                      child: AnimatedTextKit(animatedTexts: [
-                                        TypewriterAnimatedText(
-                                            "Made by Debsirin team",
-                                            textAlign: TextAlign.start),
-                                        TypewriterAnimatedText(
-                                            "Dust Tracker monitering system",
-                                            textAlign: TextAlign.start),
-                                        TypewriterAnimatedText(
-                                            "install at Debsirin school",
-                                            textAlign: TextAlign.start),
-                                      ]),
+                                      child: AnimatedTextKit(
+                                          repeatForever: true,
+                                          animatedTexts: [
+                                            TypewriterAnimatedText(
+                                                "Made by Debsirin team",
+                                                speed: const Duration(
+                                                    milliseconds: 300),
+                                                textAlign: TextAlign.start),
+                                            TypewriterAnimatedText(
+                                                "Dust Tracker monitering system",
+                                                speed: const Duration(
+                                                    milliseconds: 300),
+                                                textAlign: TextAlign.start),
+                                            TypewriterAnimatedText(
+                                                "install at Debsirin school",
+                                                speed: const Duration(
+                                                    milliseconds: 300),
+                                                textAlign: TextAlign.start),
+                                          ]),
                                     )
                                   ]),
                             ),
@@ -603,8 +611,10 @@ class _Navdatastate extends State<Navdata> {
                                     borderRadius: BorderRadius.circular(20)),
                                 duration: const Duration(milliseconds: 600),
                                 child: Padding(
-                                  padding:
-                                      EdgeInsets.only(top: height * .2 / 10),
+                                  padding: touch
+                                      ? EdgeInsets.only(top: height * .2 / 10)
+                                      : EdgeInsets.only(
+                                          top: height * .2 / 5, left: 1),
                                   child: Text(
                                       touch ? "This project" : "Envirosence",
                                       style: touch
@@ -614,7 +624,7 @@ class _Navdatastate extends State<Navdata> {
                                           : TextStyle(
                                               fontSize: height * .2 / 2.6,
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.red)),
+                                              color: Colors.white)),
                                 ),
                               ),
                             ),
@@ -622,7 +632,7 @@ class _Navdatastate extends State<Navdata> {
                               opacity: touch ? 1 : 0,
                               duration: const Duration(milliseconds: 600),
                               child: Expanded(
-                                flex: 0,
+                                flex: 1,
                                 child: Padding(
                                   padding: EdgeInsets.only(
                                       top: height * .10 / 5, left: 20),
