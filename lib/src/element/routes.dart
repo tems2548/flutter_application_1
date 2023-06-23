@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/src/buttomnavi.dart';
 import 'package:flutter_application_1/src/register.dart';
-
-import 'loginpage.dart';
+import 'package:flutter_application_1/src/loginpage.dart';
 
 class AppRoute {
   static const login = 'login';
