@@ -622,7 +622,7 @@ class _Navdatastate extends State<Navdata> {
                                               fontSize: height * .2 / 4,
                                               fontWeight: FontWeight.bold)
                                           : TextStyle(
-                                              fontSize: height * .2 / 2.6,
+                                              fontSize: height * .2 / 3,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white)),
                                 ),
